@@ -1,0 +1,23 @@
+
+// Online C Compiler - Build, Compile and Run your C programs online in your favorite browser
+
+#include<stdio.h>
+#include<math.h>
+
+
+int main()
+{
+    for(int i = 1; i < 1000; i ++)
+    {
+        for(int j = i+1; j < (1000 - i); j ++)
+        {
+            int k = (1000 - i - j);
+            if(pow(i,2) + pow(j,2) == pow(k,2))
+            {
+                printf("%d %d %d, %d\n", i, j, k, i*j*k);
+                
+            }
+        }
+    }
+    return 0;
+}
