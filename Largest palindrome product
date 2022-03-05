@@ -1,0 +1,67 @@
+
+// Online C Compiler - Build, Compile and Run your C programs online in your favorite browser
+
+#include<stdio.h>
+#include<math.h>
+int isPalindrome(int n)
+{
+    int size = 0;
+    int divider = 1;
+    while(n/divider)
+    {
+        size++;
+        divider *=10;
+    }
+    int offset = size;
+    //printf("size:%d, %d\n", size, n);
+    while(n && offset>1)
+    {
+        //printf("n=%d\n", n);
+        int highmask = (int)pow(10,offset-1);
+        int high = n%highmask;
+        //printf("offset = %d\n", highmask);
+        high = n- high;
+        n = n - high;
+        //printf("high:%d, %d\n", high, n);
+        high = high/highmask;
+        //printf("high:%d\n", high);
+        
+        int lowmask = 10;
+        int low = n%lowmask;
+        //printf("offset = %d\n",lowmask);
+        //printf("low:%d\n", low);
+        n = n/10;
+        offset -=2;
+        if (low !=high)
+        {
+            //printf("not palindrome\n");
+            return 0;
+        }
+    }
+    //printf("Is palindrome\n");
+    return 1;
+}
+
+int main()
+{
+    //isPalindrome(89198);
+    //return 0;
+    int largest = -1;
+    for(int i = 999 ; i > 100; i--)
+    {
+        for(int j = 999 ; j > 100; j--)
+        {
+            if(isPalindrome(i*j) == 1)
+            {
+                if(largest < i*j)
+                {
+                    largest = i*j;
+                }
+                
+                //return 0;
+            }
+        }
+    }
+    printf("largest = %d\n", largest);
+    return 0;
+}
