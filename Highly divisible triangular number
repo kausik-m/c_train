@@ -1,0 +1,65 @@
+
+// Online C Compiler - Build, Compile and Run your C programs online in your favorite browser
+
+#include<stdio.h>
+#include<math.h>
+#include<string.h>
+#include<stdbool.h>
+long int sum(int n)
+{
+    return n*(n+1)/2;
+}
+
+int factors(long int n)
+{
+    int sum = 1;
+    long int orig = n;
+    int count = 0;
+    while(n%2 == 0)
+    {
+        count++;
+        n /= 2;
+    }
+    sum *= (count+1);
+    
+    for(int i = 3; i <= sqrt(n); i+=2)
+    {
+        if(n%i == 0 )
+        {
+            count = 0;
+            while(n%i == 0)
+            {
+                count++;
+                n /= i;
+            }
+            //printf("%d, %d\n", i, count+1);
+            sum *= (count+1);
+        }
+    }
+    if (n > 2)
+		sum *= 2;
+    if(sum !=1)
+        sum -=1;
+    return sum;
+}
+
+
+int main()
+{
+    int count = 0;
+    int index = 1;
+    while(1)
+    {
+        count = factors(sum(index));
+        
+        //printf("%d, %ld, %d\n", index, sum(index), count);
+        if(count >= 500)
+        {
+            printf("%d, %ld, %d\n", index, sum(index), count);
+            break;
+        }
+        index++;
+    }
+    
+    return 0;
+}
